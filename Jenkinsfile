@@ -51,12 +51,17 @@ pipeline {
         stage('Verification/Cleanup') {
             agent { label 'deploy' }
             input {
-                message "Should we continue with cleanup, accept, merge PR?"
+                message "Should we continue with cleanup, merge, and close PR?"
                 ok "Yes!"
             }
             steps {
                 echo "Cleaning ..."
                 sh "cd jenkins; curl -sSL '${OCP_PIPELINE_CLI_URL}' | bash -s cleanup --config=config.groovy --pr=${CHANGE_ID}"
+                script {
+                    String mergeMethod=("master".equalsIgnoreCase(env.CHANGE_TARGET))?'merge':'squash'
+                    echo "Merging (using '${mergeMethod}' method) and closing PR"
+                    GitHubHelper.mergeAndClosePullRequest(this, mergeMethod)
+                }
             }
         }
     }
