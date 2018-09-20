@@ -72,7 +72,11 @@ app {
                         'BC_NAME':app.build.name,
                         'SUFFIX':app.deployment.suffix,
                         'VERSION': app.deployment.version,
-                        'ROUTE_HOST': "${app.deployment.id}-${app.deployment.namespace}.pathfinder.gov.bc.ca"
+                        'ROUTE_HOST': "${app.deployment.id}-${app.deployment.namespace}.pathfinder.gov.bc.ca",
+                        'MASTER_CPU_REQUEST': '1000m',
+                        'MASTER_CPU_LIMIT': '2000m',
+                        'SLAVE_CPU_REQUEST': '500m',
+                        'SLAVE_CPU_LIMIT': '1000m'
                     ]
                 ]
         ]
