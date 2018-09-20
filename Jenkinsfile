@@ -48,5 +48,16 @@ pipeline {
                 sh "cd jenkins; curl -sSL '${OCP_PIPELINE_CLI_URL}' | bash -s deploy --config=config.groovy --pr=${CHANGE_ID} --env=prod"
             }
         }
+        stage('Verification/Cleanup') {
+            agent { label 'deploy' }
+            input {
+                message "Should we continue with cleanup, accept, merge PR?"
+                ok "Yes!"
+            }
+            steps {
+                echo "Cleaning ..."
+                sh "cd jenkins; curl -sSL '${OCP_PIPELINE_CLI_URL}' | bash -s cleanup --config=config.groovy --pr=${CHANGE_ID}"
+            }
+        }
     }
 }
