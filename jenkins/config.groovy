@@ -66,7 +66,7 @@ app {
                     'params':[
                         'NAME':app.deployment.name,
                         'BC_NAME':app.build.name,
-                        'NAME_SUFFIX':'',
+                        'SUFFIX':app.deployment.suffix,
                         'VERSION': app.deployment.version,
                         'ROUTE_HOST': "${app.deployment.id}-${app.deployment.namespace}.pathfinder.gov.bc.ca"
                     ]
