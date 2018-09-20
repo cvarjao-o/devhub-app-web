@@ -62,7 +62,7 @@ pipeline {
                 script {
                     String mergeMethod=("master".equalsIgnoreCase(env.CHANGE_TARGET))?'merge':'squash'
                     echo "Merging (using '${mergeMethod}' method) and closing PR"
-                    GitHubHelper.mergeAndClosePullRequest(this, mergeMethod)
+                    bcgov.GitHubHelper.mergeAndClosePullRequest(this, mergeMethod)
                 }
             }
         }
