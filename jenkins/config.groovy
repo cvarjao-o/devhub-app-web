@@ -10,6 +10,10 @@ app {
             namespace = app.namespaces.'build'.namespace
             disposable = true
         }
+        'test' {
+            namespace = app.namespaces.'build'.namespace
+            disposable = true
+        }
         'prod' {
             namespace = app.namespaces.'build'.namespace
             disposable = false
