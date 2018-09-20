@@ -26,6 +26,7 @@ pipeline {
                 sh "cd jenkins; curl -sSL '${OCP_PIPELINE_CLI_URL}' | bash -s deploy --config=config.groovy --pr=${CHANGE_ID} --env=dev"
             }
         }
+        /*
         stage('Deploy (TEST)') {
             agent { label 'deploy' }
             input {
@@ -37,6 +38,7 @@ pipeline {
                 sh "cd jenkins; curl -sSL '${OCP_PIPELINE_CLI_URL}' | bash -s deploy --config=config.groovy --pr=${CHANGE_ID} --env=test"
             }
         }
+        */
         stage('Deploy (PROD)') {
             agent { label 'deploy' }
             input {
